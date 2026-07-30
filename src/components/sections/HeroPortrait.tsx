@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useIsMobile, usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 import { personal } from "@/data/config";
-
-const PORTRAIT_SRC = "/images/profile/portrait.png";
 
 /**
  * Transparent-PNG portrait that blends into the 3D scene — no card, no circle.
@@ -17,6 +15,13 @@ export function HeroPortrait() {
   const reduced = usePrefersReducedMotion();
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  // Cached-image race guard: if the browser already had the portrait cached and
+  // it finished loading before React attached `onLoad`, the opacity gate would
+  // otherwise leave it invisible until a refresh. Mark it loaded on ref attach.
+  const setImgRef = useCallback((node: HTMLImageElement | null) => {
+    if (node && node.complete && node.naturalWidth > 0) setLoaded(true);
+  }, []);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -58,8 +63,12 @@ export function HeroPortrait() {
         {!failed ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={PORTRAIT_SRC}
+            ref={setImgRef}
+            src={personal.portrait}
             alt={personal.name}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             onLoad={() => setLoaded(true)}
             onError={() => setFailed(true)}
             className="h-full w-auto object-contain object-bottom drop-shadow-[0_28px_38px_rgba(0,0,0,0.55)]"
@@ -90,7 +99,7 @@ function PortraitPlaceholder() {
       {/* head */}
       <div className="absolute bottom-[52%] h-24 w-24 rounded-full bg-white/[0.12]" />
       <span className="absolute bottom-5 z-10 text-[11px] tracking-wide text-muted-foreground/70">
-        Add /images/profile/portrait.png
+        Add {personal.portrait}
       </span>
     </div>
   );

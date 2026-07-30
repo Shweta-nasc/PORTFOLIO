@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { siteMeta, personal, links } from "@/data/config";
+import { siteMeta, personal, links, education } from "@/data/config";
 import "./globals.css";
 
 const inter = Inter({
@@ -49,13 +49,14 @@ export const metadata: Metadata = {
     title: siteMeta.title,
     description: siteMeta.description,
     siteName: `${personal.name} — Portfolio`,
-    images: [{ url: siteMeta.ogImage, width: 1200, height: 630, alt: personal.name }],
+    // og:image is provided by the generated app/opengraph-image.tsx (Next
+    // auto-injects it), so no static file is referenced here.
   },
   twitter: {
     card: "summary_large_image",
     title: siteMeta.title,
     description: siteMeta.description,
-    images: [siteMeta.ogImage],
+    // twitter:image comes from the generated app/twitter-image.tsx.
   },
   robots: {
     index: true,
@@ -66,25 +67,31 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+// Structured data — every field is sourced from the central config, nothing
+// hardcoded here.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: personal.name,
-  jobTitle: "AI Engineer & Software Developer",
+  jobTitle: personal.jobTitle,
   email: personal.email,
   url: siteMeta.url,
+  image: `${siteMeta.url}${personal.photo}`,
   address: { "@type": "PostalAddress", addressLocality: personal.location },
-  sameAs: [links.github, links.linkedin, links.leetcode, links.codeforces],
+  sameAs: [
+    links.github,
+    links.linkedin,
+    links.leetcode,
+    links.codeforces,
+    links.codechef,
+    links.geeksforgeeks,
+    links.twitter,
+  ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "University of Allahabad",
+    name: education.university,
   },
-  knowsAbout: [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Full-Stack Development",
-    "Competitive Programming",
-  ],
+  knowsAbout: [...personal.expertise],
 };
 
 export default function RootLayout({

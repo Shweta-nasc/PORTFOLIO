@@ -43,6 +43,18 @@ export const personal = {
     "Open Source Contributor",
     "Competitive Programmer",
   ],
+  /** Professional headline — used in metadata & schema.org structured data. */
+  jobTitle: "AI Engineer & Software Developer",
+  /** Areas of expertise — feeds schema.org `knowsAbout`. */
+  expertise: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Full-Stack Development",
+    "Competitive Programming",
+  ],
+  /** Portrait assets (kept here so no component hardcodes an image path). */
+  portrait: "/images/profile/portrait.png", // transparent cutout — hero
+  photo: "/images/profile/portrait.jpg", // framed photo — about card
 } as const;
 
 export const education = {
@@ -63,11 +75,12 @@ export const education = {
  * NOTE: Replace the placeholder handles with the real profile URLs.
  */
 export const links = {
-  github: "https://github.com/gdgshweta",
-  linkedin: "https://www.linkedin.com/in/gdgshweta",
-  leetcode: "https://leetcode.com/u/gdgshweta",
-  codeforces: "https://codeforces.com/profile/gdgshweta",
-  geeksforgeeks: "https://auth.geeksforgeeks.org/user/gdgshweta",
+  github: "https://github.com/Shweta-nasc",
+  linkedin: "https://www.linkedin.com/in/shweta-singh-903188329/",
+  leetcode: "https://leetcode.com/u/Rookie_engicoder/",
+  codeforces: "https://codeforces.com/profile/RookieCodes_0805",
+  geeksforgeeks: "https://www.geeksforgeeks.org/profile/shwetasi85do",
+  codechef: "https://www.codechef.com/users/gdgshweta",
   twitter: "https://twitter.com/gdgshweta",
   discord: "https://discord.com/users/gdgshweta",
   email: "mailto:gdgshweta@gmail.com",

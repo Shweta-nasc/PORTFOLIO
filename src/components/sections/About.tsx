@@ -34,9 +34,9 @@ export function About() {
           <div className="group relative">
             <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-aurora-indigo/40 via-accent/20 to-aurora-cyan/40 opacity-60 blur-xl transition-opacity duration-500 group-hover:opacity-90" />
             <SmartImage
-              src="/images/profile/portrait.jpg"
+              src={personal.photo}
               alt={`${personal.name} portrait`}
-              label="Add profile/portrait.jpg"
+              label={`Add ${personal.photo}`}
               rounded="rounded-[1.75rem]"
               className="relative aspect-[4/5] w-full"
             />

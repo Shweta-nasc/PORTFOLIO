@@ -42,8 +42,8 @@ export const projects: Project[] = [
       { label: "Impact factors", value: "6" },
     ],
     links: {
-      github: "https://github.com/gdgshweta/parkvision-saathi",
-      demo: "#",
+      github: "https://github.com/Shweta-nasc/Park-Vision-sathi",
+      demo: "https://park-vision-sathi-lake.vercel.app/",
       caseStudy: "#projects",
     },
     featured: true,
@@ -84,8 +84,8 @@ export const projects: Project[] = [
       { label: "Model strategy", value: "Agnostic" },
     ],
     links: {
-      github: "https://github.com/gdgshweta/sentinel",
-      demo: "#",
+      github: "https://github.com/Shweta-nasc/SpaceAgent",
+      demo: "https://space-agent-9m9h.vercel.app/",
       caseStudy: "#projects",
     },
     featured: true,
@@ -126,8 +126,8 @@ export const projects: Project[] = [
       { label: "Deploy", value: "Containerised" },
     ],
     links: {
-      github: "https://github.com/gdgshweta/nagarsetu",
-      demo: "#",
+      github: "https://github.com/Shweta-nasc/NagarSetu",
+      demo: "https://urban-care-collab-main.vercel.app/",
       caseStudy: "#projects",
     },
     featured: true,

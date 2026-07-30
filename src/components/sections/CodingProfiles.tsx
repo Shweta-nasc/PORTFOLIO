@@ -1,20 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Flame } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { codingProfiles } from "@/data/coding-profiles";
-import { fadeUp, staggerContainer } from "@/lib/animations";
+import { platformMeta } from "@/config/profile";
+import { staggerContainer } from "@/lib/animations";
+import { GitHubCard } from "./coding/GitHubCard";
+import { LeetCodeCard } from "./coding/LeetCodeCard";
+import { CodeforcesCard } from "./coding/CodeforcesCard";
+import { GeeksforGeeksCard } from "./coding/GeeksforGeeksCard";
 
 export function CodingProfiles() {
   return (
-    <Section id="coding">
+    <Section id="coding" className="isolate">
+      {/* Subtle dark gradient backdrop — lifts card/text readability above the
+          animated 3D world without hiding it entirely. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, hsl(var(--background) / 0.72) 30%, hsl(var(--background) / 0.72) 70%, transparent)",
+        }}
+      />
+
       <SectionHeading
         index="06"
         eyebrow="Competitive Programming"
-        title="Sharpening problem-solving, daily"
-        description="Consistent practice across the major judges — data structures, algorithms, and contest pressure."
+        title="Live coding footprint"
+        description="Real-time stats pulled straight from each platform's API — nothing typed by hand."
       />
 
       <motion.div
@@ -22,70 +36,16 @@ export function CodingProfiles() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6"
       >
-        {codingProfiles.map((p) => (
-          <motion.a
-            key={p.id}
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            variants={fadeUp}
-            whileHover={{ y: -6 }}
-            className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/8 bg-white/[0.02] p-6 transition-colors hover:border-white/20"
-          >
-            {/* Accent glow */}
-            <div
-              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity duration-500 group-hover:opacity-40"
-              style={{ background: p.accent }}
-            />
-
-            <div className="flex items-center justify-between">
-              <span
-                className="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl"
-                style={{ background: `${p.accent}1f`, color: p.accent }}
-              >
-                <p.icon />
-              </span>
-              <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
-            </div>
-
-            <h3 className="mt-4 text-lg font-semibold">{p.platform}</h3>
-            <p className="text-sm text-muted-foreground">{p.handle}</p>
-
-            <div className="mt-5 grid gap-3 border-t border-white/8 pt-4">
-              {p.stats.map((s) => (
-                <div key={s.label} className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{s.label}</span>
-                  <span
-                    className="font-display text-sm font-bold"
-                    style={{ color: p.accent }}
-                  >
-                    {s.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {p.badges && p.badges.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.badges.map((b) => (
-                  <span
-                    key={b}
-                    className="inline-flex items-center gap-1 rounded-full bg-white/[0.05] px-2 py-1 text-[10px] text-foreground/70"
-                  >
-                    <Flame className="h-2.5 w-2.5" style={{ color: p.accent }} />
-                    {b}
-                  </span>
-                ))}
-              </div>
-            )}
-          </motion.a>
-        ))}
+        <GitHubCard meta={platformMeta("github")} />
+        <LeetCodeCard meta={platformMeta("leetcode")} />
+        <CodeforcesCard meta={platformMeta("codeforces")} />
+        <GeeksforGeeksCard meta={platformMeta("geeksforgeeks")} />
       </motion.div>
 
       <p className="mt-6 text-center text-xs text-muted-foreground">
-        Stats reflect recent activity — tap a card to view the live profile.
+        Stats fetch live on load and are cached briefly — tap any card to open the profile.
       </p>
     </Section>
   );

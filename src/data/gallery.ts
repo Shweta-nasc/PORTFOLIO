@@ -29,7 +29,7 @@ export const galleryItems: GalleryItem[] = [
   {
     id: "g2",
     title: "TechJam 2.0",
-    image: "/images/hackathons/techjam.jpg",
+    image: "/images/achievements/techjam.jpg",
     category: "Hackathons",
     location: "Microsoft, Noida HQ",
     description:
@@ -71,7 +71,7 @@ export const galleryItems: GalleryItem[] = [
   {
     id: "g6",
     title: "Renaissance 2025",
-    image: "/images/events/renaissance.jpg",
+    image: "/images/events/renaissance.png",
     category: "Events",
     location: "E-Cell, MNNIT",
     description:
@@ -82,7 +82,7 @@ export const galleryItems: GalleryItem[] = [
   {
     id: "g7",
     title: "CODEBLOCK Hackathon",
-    image: "/images/hackathons/codeblock.jpg",
+    image: "/images/achievements/codeblock.jpg",
     category: "Hackathons",
     location: "University of Allahabad",
     description: "Top 13 finish, recognised for outstanding AI and Blockchain architecture.",
