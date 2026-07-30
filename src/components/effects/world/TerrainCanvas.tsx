@@ -108,32 +108,48 @@ const FROST = new THREE.Color("#93a7ad");
 
 type WindUniforms = { uTime: THREE.IUniform<number>; uWind: THREE.IUniform<number> };
 
-/** Conifer: trunk + three stacked cone tiers, merged into one geometry. */
+/**
+ * Merge trunk + foliage parts into one archetype geometry.
+ *
+ * CRITICAL: ConeGeometry/CylinderGeometry are INDEXED but IcosahedronGeometry
+ * is NON-indexed, and `mergeGeometries` returns `null` on a mixed index mode.
+ * Calling a method on that null used to throw during mount — and because the
+ * whole world sits behind an ErrorBoundary with a null fallback, one bad tree
+ * blanked the entire background. So we normalise every part to non-indexed
+ * first (also fine for flat shading) and fall back to the trunk alone if the
+ * merge ever still fails. A tree must never be able to take down the scene.
+ */
+function mergeParts(parts: THREE.BufferGeometry[]): THREE.BufferGeometry {
+  const flat = parts.map((p) => (p.index ? p.toNonIndexed() : p));
+  const merged = mergeGeometries(flat, false);
+  const result = merged ?? parts[0].clone();
+  // dispose the throwaway non-indexed copies, then the originals
+  flat.forEach((f, i) => {
+    if (f !== parts[i]) f.dispose();
+  });
+  parts.forEach((p) => p.dispose());
+  result.computeVertexNormals();
+  return result;
+}
+
+/** Conifer: trunk + three stacked cone tiers (pine/fir), merged. */
 function buildConifer(): THREE.BufferGeometry {
-  const parts = [
+  return mergeParts([
     new THREE.CylinderGeometry(0.14, 0.2, 1.0, 6).translate(0, 0.5, 0),
     new THREE.ConeGeometry(1.3, 2.0, 7).translate(0, 1.7, 0),
     new THREE.ConeGeometry(1.02, 1.7, 7).translate(0, 2.7, 0),
     new THREE.ConeGeometry(0.7, 1.4, 7).translate(0, 3.6, 0),
-  ];
-  const merged = mergeGeometries(parts, false)!;
-  parts.forEach((p) => p.dispose());
-  merged.computeVertexNormals();
-  return merged;
+  ]);
 }
 
-/** Broadleaf: trunk + a small cluster of low-poly canopy blobs. */
+/** Broadleaf: trunk + an offset cluster of low-poly canopy blobs. */
 function buildBroadleaf(): THREE.BufferGeometry {
-  const parts = [
+  return mergeParts([
     new THREE.CylinderGeometry(0.13, 0.2, 1.5, 6).translate(0, 0.75, 0),
     new THREE.IcosahedronGeometry(1.2, 0).translate(0, 2.25, 0),
     new THREE.IcosahedronGeometry(0.85, 0).translate(0.6, 1.85, 0.2),
     new THREE.IcosahedronGeometry(0.8, 0).translate(-0.55, 2.7, -0.15),
-  ];
-  const merged = mergeGeometries(parts, false)!;
-  parts.forEach((p) => p.dispose());
-  merged.computeVertexNormals();
-  return merged;
+  ]);
 }
 
 function coniferTarget(s: SeasonState, out: THREE.Color) {
@@ -495,10 +511,10 @@ export default function TerrainCanvas() {
     };
   }, []);
 
-  // Adaptive budgets — density cut ~65% (2400→900) so particles read as a
-  // subtle atmosphere instead of visual noise drowning the UI. Post-processing
-  // only on capable desktops that haven't shown frame drops.
-  const particleCount = mobile ? 300 : reduced ? 260 : 900;
+  // Adaptive budgets — "selective realism": ~65% fewer particles than the
+  // original (2400→820), each higher quality and depth-layered, so they read
+  // as atmosphere rather than noise. Post-processing only on capable desktops.
+  const particleCount = mobile ? 320 : reduced ? 260 : 820;
   const treeCount = mobile ? 420 : 850;
   const usePost = !mobile && !reduced && !degraded;
 
