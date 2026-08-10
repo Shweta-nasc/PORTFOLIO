@@ -10,10 +10,10 @@ const nextConfig = {
       },
     ],
   },
-  eslint: {
+  //eslint: {
     // Lint is run explicitly via `npm run lint`; do not block production builds.
-    ignoreDuringBuilds: false,
-  },
+   // ignoreDuringBuilds: false,
+  //},
 };
 
 export default nextConfig;

@@ -47,7 +47,7 @@ export const achievements: Achievement[] = [
     highlight: "City Rank #1",
     description:
       "Attained the top city rank in Technothlon, the international school championship administered by IIT Guwahati.",
-    image: "/images/achievements/technothlon.jpg",
+    image: "/images/certificates/CityTopper.jpg",
   },
   {
     id: "campus-ambassador",
@@ -58,7 +58,7 @@ export const achievements: Achievement[] = [
     highlight: "Ambassador",
     description:
       "Appointed to the corporate-relations campus ambassador role for Renaissance 2025 through E-Cell MNNIT.",
-    image: "/images/achievements/renaissance.jpg",
+    image: "/images/events/renaissance.jpg",
   },
   {
     id: "varsity-athlete",

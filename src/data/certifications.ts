@@ -1,85 +1,192 @@
 import type { Certification } from "@/types";
 
 /**
- * Certificate entries reused by the Certificates carousel.
+ * Certificates displayed in the Certificates carousel.
  *
- * PLACEHOLDERS: images point at /public/images/certificates/*.jpg and issuer
- * logos at /public/images/logos/*.png — drop the real files there and they
- * appear automatically (SmartImage shows a labelled placeholder until then).
- * `credentialLink` is "#" where no verification URL exists yet; the modal's
- * "Verify" button only renders once a real URL is filled in.
+ * Images:
+ * /public/images/certificates/
+ *
+ * `rotation` is used for certificates whose uploaded image
+ * is sideways. Values are in degrees.
  */
+
 export const certifications: Certification[] = [
   {
-    id: "cert-ml",
-    title: "Machine Learning Specialization",
-    issuer: "DeepLearning.AI · Coursera",
-    date: "2025",
-    category: "AI",
+    id: "cert-mnnit-incubation",
+    title: "From Idea to Innovation: A Complete Journey of Startup",
+    issuer: "MNNIT Allahabad · MNNIT Foundation",
+    date: "18th April 2026",
+    category: "Entrepreneurship",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/machine-learning.jpg",
-    logo: "/images/logos/coursera.png",
-    skills: ["Supervised Learning", "Neural Networks", "Model Tuning"],
+    image: "/images/certificates/MNNIT Incubation.jpg",
+    logo: "",
+   
+    skills: [
+      "Innovation",
+      "Entrepreneurship",
+      "Startup Development",
+    ],
   },
+
   {
-    id: "cert-gcp",
-    title: "Google Cloud Fundamentals: Core Infrastructure",
-    issuer: "Google Cloud",
-    date: "2025",
-    category: "Cloud",
+    id: "cert-national-student-change-festival",
+    title: "National Student Change Festival",
+    issuer: "NSCF 2026",
+    date: "2026",
+    category: "Leadership",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/gcp-fundamentals.jpg",
-    logo: "/images/logos/google-cloud.png",
-    skills: ["GCP", "Compute", "Cloud Storage"],
+    image: "/images/certificates/NationalStudentChnageFestival.jpg",
+    logo: "",
+    
+    skills: [
+      "Leadership",
+      "Social Impact",
+      "Innovation",
+    ],
   },
+
   {
-    id: "cert-react",
-    title: "Front-End Development with React",
-    issuer: "Meta · Coursera",
-    date: "2025",
-    category: "Web Development",
+    id: "cert-senior-state-basketball",
+    title: "Senior State Basketball Championship",
+    issuer: "Uttar Pradesh Basketball Association",
+    date: "15th December 2024",
+    category: "Sports",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/react.jpg",
-    logo: "/images/logos/meta.png",
-    skills: ["React", "Hooks", "Component Design"],
+    image: "/images/certificates/SeniorStateBasketball.jpg",
+    logo: "",
+
+    skills: [
+      "Basketball",
+      "Teamwork",
+      "Competitive Sports",
+    ],
   },
+
   {
-    id: "cert-dsa",
-    title: "Data Structures & Algorithms",
-    issuer: "GeeksforGeeks",
+    id: "cert-kabaddi",
+    title: "University Sports Meet 2025 — Kabaddi",
+    issuer: "University of Allahabad",
+    date: "October 2025",
+    category: "Sports",
+    credentialId: "",
+    credentialLink: "#",
+    image: "/images/certificates/Kabaddi.jpg",
+    logo: "",
+
+    skills: [
+      "Kabaddi",
+      "Teamwork",
+      "Sports",
+    ],
+  },
+
+  {
+    id: "cert-city-topper",
+    title: "City Topper",
+    issuer: "Technothlon",
+    date: "2020",
+    category: "Achievement",
+    credentialId: "",
+    credentialLink: "#",
+    image: "/images/certificates/CityTopper.jpg",
+    logo: "",
+ 
+    skills: [
+      "Academic Excellence",
+      "Problem Solving",
+      "Competitive Achievement",
+    ],
+  },
+
+  {
+    id: "cert-squarehacks",
+    title: "SquareHacks 2.0",
+    issuer: "Students' Technology Club",
+    date: "2025",
+    category: "Hackathon",
+    credentialId: "",
+    credentialLink: "#",
+    image: "/images/certificates/SquareHacks2.0.jpg",
+    logo: "",
+ 
+    skills: [
+      "Hackathon",
+      "Problem Solving",
+      "Technology",
+    ],
+  },
+
+  {
+    id: "cert-codeblock",
+    title: "CodeBlock",
+    issuer: "CodeBlock",
     date: "2025",
     category: "Programming",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/dsa.jpg",
-    logo: "/images/logos/gfg.png",
-    skills: ["DSA", "Problem Solving", "Complexity Analysis"],
+    image: "/images/certificates/CodeBlock.jpg",
+    logo: "",
+   
+    skills: [
+      "Programming",
+      "Problem Solving",
+      "Coding",
+    ],
   },
+
   {
-    id: "cert-python",
-    title: "Python for Data Science",
-    issuer: "IBM · Coursera",
-    date: "2024",
-    category: "AI",
+    id: "cert-maharishi-olympiad",
+    title: "Maharishi Olympiad",
+    issuer: "Maharishi Vidya Mandir",
+    date: "2018–19",
+    category: "Academic",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/python-ds.jpg",
-    logo: "/images/logos/ibm.png",
-    skills: ["Python", "Pandas", "NumPy"],
+    image: "/images/certificates/MaharishiOlympiad.jpeg",
+    logo: "",
+   
+    skills: [
+      "Mathematics",
+      "Problem Solving",
+      "Academic Achievement",
+    ],
   },
+
   {
-    id: "cert-git",
-    title: "Version Control with Git",
-    issuer: "Atlassian · Coursera",
-    date: "2024",
-    category: "Programming",
+    id: "cert-yukti",
+    title: "Yukti 1.0",
+    issuer: "Yukti",
+    date: "2025",
+    category: "Technology",
     credentialId: "",
     credentialLink: "#",
-    image: "/images/certificates/git.jpg",
-    logo: "/images/logos/git.png",
-    skills: ["Git", "Branching", "Collaboration"],
+    image: "/images/certificates/Yukti1.0.jpg",
+    logo: "",
+   
+    skills: [
+      "Technology",
+      "Innovation",
+      "Problem Solving",
+    ],
   },
+
+  {
+  id: "cert-chess",
+  title: "University Sports Meet 2025 — Chess",
+  issuer: "University of Allahabad",
+  date: "October 2025",
+  category: "Sports",
+  credentialId: "",
+  credentialLink: "#",
+  image: "/images/certificates/chess.jpg",
+  logo: "",
+  skills: [
+    "Chess",
+    "Strategic Thinking",
+    "Problem Solving",
+  ],
+},
 ];

@@ -139,4 +139,5 @@ export const galleryItems: GalleryItem[] = [
     date: "2024",
     tags: ["Travel", "Mountains"],
   },
+  
 ];

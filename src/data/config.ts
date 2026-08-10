@@ -62,7 +62,7 @@ export const education = {
   university: "University of Allahabad",
   degree: "B.Tech, Computer Science & Engineering (AI Major)",
   duration: "2024 — 2028",
-  sgpa: "7.80 / 10",
+  sgpa: "8.16 / 10",
   location: "Prayagraj, India",
   school: [
     { level: "Class XII (Senior Secondary)", score: "89%" },
